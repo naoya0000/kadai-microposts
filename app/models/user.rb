@@ -14,7 +14,7 @@ class User < ApplicationRecord
   has_many :followers, through: :reverses_of_relationship, source: :user
   
   has_many :favorites
-  has_many :likes, through: :favorites, source: :micropost
+  has_many :favo_microposts, through: :favorites, source: :micropost
   
   
   def favorite(micropost)
@@ -30,8 +30,8 @@ class User < ApplicationRecord
     end
   end
   
-  def favorites?(micropost)
-    self.likes.include?(micropost)
+  def favorite?(micropost)
+    self.favo_microposts.include?(micropost)
   end
   
   def follow(other_user)
